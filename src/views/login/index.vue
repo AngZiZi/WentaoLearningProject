@@ -3,18 +3,19 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">
+        <div class="title">
           <div class="iconfont-wrapper">
             <span class="iconfont">&#xe602;</span>
           </div>
-        </h3>
+        </div>
       </div>
 
       <el-form-item prop="username">
-        <span class="svg-container">
+        <label class="svg-container" for="usename">
           <svg-icon icon-class="user" />
-        </span>
+        </label>
         <el-input
+          id="usename"
           ref="username"
           v-model="loginForm.username"
           placeholder="用户名"
@@ -26,10 +27,11 @@
       </el-form-item>
 
       <el-form-item prop="password">
-        <span class="svg-container">
+        <label class="svg-container" for="password">
           <svg-icon icon-class="password" />
-        </span>
+        </label>
         <el-input
+          id="password"
           :key="passwordType"
           ref="password"
           v-model="loginForm.password"
@@ -45,10 +47,10 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登 录</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" class="login-button" @click.native.prevent="handleLogin">登 录</el-button>
 
       <div class="tips">
-        <span class="tips-left"><a>注册新用户</a></span>
+        <span class="tips-left" @click="handleRegister"><a>注册新用户</a></span>
         <span class="tips-right"><a>忘记密码？</a></span>
       </div>
 
@@ -81,8 +83,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'yudong',
-        password: '123123'
+        username: 'admin',
+        password: '111111'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -128,6 +130,9 @@ export default {
           return false
         }
       })
+    },
+    handleRegister() {
+      this.$router.push('/register')
     }
   }
 }
@@ -138,7 +143,7 @@ export default {
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 $bg:#ffffff;
 $light_gray:rgb(46, 45, 45);
-$cursor: #fff;
+$cursor: rgb(59, 59, 59);
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
@@ -173,7 +178,7 @@ $cursor: #fff;
 
   .el-form-item {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: rgba(139, 139, 139, 0.1);
+    background: rgb(255, 255, 255);
     border-radius: 10px;
     // color: #000000;
   }
@@ -190,7 +195,7 @@ $light_gray:#eee;
   width: 100%;
   background-color: $bg;
   background: url('./../../assets/login_images/bg.jpg') no-repeat 0px 0px;
-  background-size: 1370px 657px;
+  background-size: 100% 100%;
   // background: no-repeat;
   overflow: hidden;
 
@@ -207,30 +212,34 @@ $light_gray:#eee;
     position: relative;
     font-size: 14px;
     color: #fff;
-    margin-bottom: 10px;
-    // background: #424242;
+    margin-bottom: 20px;
+    // background: #faf8f8;
 
     span {
      width: 60px;
-     height: 14px;
+     height: 24px;
     }
 
     .tips-left a{
-      padding: 0 100px 0 50px;
+      position: absolute;
+      left: 40px;
       color: #fff
     }
     .tips-left:hover a{
       text-decoration: underline;
+      font-size: 16px;
       color: red;
       cursor: pointer
     }
     .tips-right a{
-      padding: 0 20px 0 100px;
+      position: absolute;
+      right: 40px;
+      // padding: 0 20px 0 100px;
       color: #fff
     }
     .tips-right:hover a{
       text-decoration: underline;
-      color: red;
+      color: rgb(172, 172, 172);
     }
   }
 
@@ -244,7 +253,6 @@ $light_gray:#eee;
 
   .title-container {
     position: relative;
-
     .title {
       font-size: 26px;
       color: $light_gray;
@@ -267,8 +275,8 @@ $light_gray:#eee;
     width: 80px;
     height: 80px;
     position: relative;
-    left: 180px;
-    background: #cecece;
+    left: 40%;
+    background: #b6aeae;
     border-radius: 50px 50px 50px 50px;
   }
   .iconfont {
@@ -279,6 +287,11 @@ $light_gray:#eee;
     text-align: center;
     font-size: 50px;
     color: rgb(255, 255, 255);
+  }
+
+  .login-button:hover {
+    font-size: 16px;
+    color:red
   }
 }
 </style>
