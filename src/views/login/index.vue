@@ -62,6 +62,15 @@
 import { validUsername } from '@/utils/validate'
 import { validPassword } from '@/utils/validate'
 
+// const tokens = {
+//   admin: {
+//     token: 'admin-token'
+//   },
+//   editor: {
+//     token: 'editor-token'
+//   }
+// }
+
 export default {
   name: 'Login',
   data() {
@@ -132,7 +141,7 @@ export default {
       })
     },
     handleRegister() {
-      this.$router.push('/register')
+      this.$router.push({ path: '/register' })
     }
   }
 }
