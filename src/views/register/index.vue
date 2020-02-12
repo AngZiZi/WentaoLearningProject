@@ -14,6 +14,7 @@
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">创建</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="backLogin">返回</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -57,7 +58,9 @@ export default {
       ruleForm: {
         pass: '',
         checkPass: '',
-        name: ''
+        name: '',
+        btn3: 'primary',
+        button: ''
       },
       rules: {
         pass: [
@@ -76,7 +79,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          alert('创建成功!')
         } else {
           console.log('error submit!!')
           return false
@@ -85,6 +88,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    backLogin() {
+      this.$router.push({ path: this.redirect || '/' })
     }
   }
 }
