@@ -1,15 +1,15 @@
 <template>
   <div class="register">
     <div class="register-container">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+      <el-form ref="ruleForm" :model="ruleForm" status-icon :rules="rules" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="name" class="el-form-item">
-          <el-input v-model="ruleForm.name"></el-input>
+          <el-input v-model="ruleForm.name" />
         </el-form-item>
         <el-form-item label="密码" prop="pass" class="el-form-item">
-          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+          <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
         </el-form-item>
         <el-form-item label="确认密码" prop="checkPass" class="el-form-item">
-          <el-input type="password"  v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+          <el-input v-model="ruleForm.checkPass" type="password" autocomplete="off" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">创建</el-button>
