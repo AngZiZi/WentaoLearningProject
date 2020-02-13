@@ -1,0 +1,21 @@
+{
+    "ret": true,
+    "data": {
+      "ruleForm": {
+          "pass": "",
+          "checkPass": "",
+          "name": ""
+        },
+        "rules": {
+          "pass": [
+            { "validator": "validatePass", "trigger": "blur"}
+          ],
+          "checkPass": [
+            { "validator": "validatePass2", "trigger": "blur" }
+          ],
+          "name": [
+            { "validator": "checkName", "trigger": "blur"}
+          ]
+        }
+    }
+}

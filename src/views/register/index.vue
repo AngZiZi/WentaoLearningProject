@@ -22,6 +22,7 @@
 </template>
 
 <script>
+// import { register } from '@/api/user'
 export default {
   name: 'Register',
   data() {
@@ -58,9 +59,7 @@ export default {
       ruleForm: {
         pass: '',
         checkPass: '',
-        name: '',
-        btn3: 'primary',
-        button: ''
+        name: ''
       },
       rules: {
         pass: [
@@ -73,13 +72,39 @@ export default {
           { validator: checkName, trigger: 'blur' }
         ]
       }
+      // roleForm: null,
+      // rules: null,
+      // registerLoading: true
     }
   },
+  mounted() {
+    this.getRegisterInfo()
+  },
   methods: {
+    // fetchData() {
+    //   this.registerLoading = true
+    //   register().then(response => {
+    //     this.roleForm = response.data.items
+    //     this.rules = response.data.items
+    //     this.registerLoading = false
+    //   })
+    // },
+    // getRegisterInfo() {
+    //   axios.get('/api/register.json').then(this.getRegisterInfoSucc)
+    // },
+    // getRegisterInfoSucc(res) {
+    //   res = res.data
+    //   if (res.ret && res.data) {
+    //     const data = res.data
+    //     this.roleForm = data.roleForm
+    //     this.rules = data.rules
+    //   }
+    //   console.log(res)
+    // },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('创建成功!')
+          alert('创建成功，请点击“确定”，并点击“返回”按钮进入登录页面。')
         } else {
           console.log('error submit!!')
           return false
@@ -90,7 +115,22 @@ export default {
       this.$refs[formName].resetFields()
     },
     backLogin() {
-      this.$router.push({ path: this.redirect || '/' })
+      this.$confirm('此操作将退出至登录页, 是否已创建好新账户?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '请登录!'
+        })
+        this.$router.push({ path: this.redirect || '/' })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '请创建新账户！'
+        })
+      })
     }
   }
 }

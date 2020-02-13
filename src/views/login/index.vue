@@ -125,6 +125,10 @@ export default {
           }).catch(() => {
             this.loading = false
           })
+          this.$message({
+            message: '您好，登录成功，欢迎使用。',
+            type: 'success'
+          })
         } else {
           console.log('error submit!!')
           return false
